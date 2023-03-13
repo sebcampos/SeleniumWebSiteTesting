@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+    <suite name="All Test Suite" thread-count="10" parallel="tests">
+        <test verbose="2" name="Chrome">
+            <parameter name="browser" value="chrome"/>
+            <classes>
+                <class name="testcases.FiltersButtonUITest">
+                    <methods>
+                        <include name="ValidateFiltersButton"/>
+                    </methods>
+                </class>
+                <class name="testcases.SwaggerDocumentationUITest">
+                    <methods>
+                        <include name="getRequestTest"/>
+                    </methods>
+                </class>
+                <class name="testcases.UploadCSVUITest">
+                    <methods>
+                        <include name="UploadCSVTestCase"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
+        <test verbose="2" name="FireFox">
+            <parameter name="browser" value="firefox"/>
+            <classes>
+                <class name="testcases.FiltersButtonUITest">
+                    <methods>
+                        <include name="ValidateFiltersButton"/>
+                    </methods>
+                </class>
+                <class name="testcases.SwaggerDocumentationUITest">
+                    <methods>
+                        <include name="getRequestTest"/>
+                    </methods>
+                </class>
+                <class name="testcases.UploadCSVUITest">
+                    <methods>
+                        <include name="UploadCSVTestCase"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
+        <test verbose="2" name="Edge">
+            <parameter name="browser" value="edge"/>
+            <classes>
+                <class name="testcases.FiltersButtonUITest">
+                    <methods>
+                        <include name="ValidateFiltersButton"/>
+                    </methods>
+                </class>
+                <class name="testcases.SwaggerDocumentationUITest">
+                    <methods>
+                        <include name="getRequestTest"/>
+                    </methods>
+                </class>
+                <class name="testcases.UploadCSVUITest">
+                    <methods>
+                        <include name="UploadCSVTestCase"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
+<!--        <test verbose="2" name="Safari">-->
+<!--            <parameter name="browser" value="safari"/>-->
+<!--            <classes>-->
+<!--                <class name="testcases.FiltersButtonUITest">-->
+<!--                    <methods>-->
+<!--                        <include name="ValidateFiltersButton"/>-->
+<!--                    </methods>-->
+<!--                </class>-->
+<!--                <class name="testcases.SwaggerDocumentationUITest">-->
+<!--                    <methods>-->
+<!--                        <include name="getRequestTest"/>-->
+<!--                    </methods>-->
+<!--                </class>-->
+<!--                <class name="testcases.UploadCSVUITest">-->
+<!--                    <methods>-->
+<!--                        <include name="UploadCSVTestCase"/>-->
+<!--                    </methods>-->
+<!--                </class>-->
+<!--            </classes>-->
+<!--        </test>-->
+    </suite>
