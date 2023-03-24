@@ -12,16 +12,27 @@ public class SwaggerDocumentationUITest extends BaseUITest
     public static String expectedResponseMessage = "Authentication credentials were not provided";
 
     @Test
-    public void getRequestTest()
+    public void getRequestWithoutAuthenticationTest()
     {
         navigateToSwaggerApiDocumentationPage();
-        waitForElementToExist(SwaggerUIPage.databaseEndPointListDropdownXpath).click();
+        waitForElementToExist(SwaggerUIPage.reportsEndPointListDropdownXpath).click();
         waitForElementToExist(SwaggerUIPage.tryItOutButtonXpath).click();
         executeGetRequestButton = findByXPath(SwaggerUIPage.executeButtonXpath);
         scrollToElement(executeGetRequestButton);
         executeGetRequestButton.click();
-        responseCodeElement = waitForElementToExist(SwaggerUIPage.responseCodeStatus);
+        responseCodeElement = waitForElementToExist(SwaggerUIPage.responseCodeStatusXpath);
         assert responseCodeElement.getText().contains("403");
-        assert findByXPath(SwaggerUIPage.responseBody).getText().contains(expectedResponseMessage);
+        assert findByXPath(SwaggerUIPage.responseBodyXpath).getText().contains(expectedResponseMessage);
+    }
+
+
+    @Test
+    public void authenticatedGetRequestTest()
+    {
+        navigateToSwaggerApiDocumentationPage();
+        waitForElementToExist(SwaggerUIPage.reportsEndPointListDropdownXpath).click();
+        waitForElementToExist(SwaggerUIPage.authorizeButtonXpath).click();
+        scrollToElement(waitForElementToExist(SwaggerUIPage.tokenInputBoxXpath));
+        System.out.println("foo");
     }
 }
