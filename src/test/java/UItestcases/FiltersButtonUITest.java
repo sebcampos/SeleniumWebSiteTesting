@@ -1,4 +1,4 @@
-package testcases;
+package UItestcases;
 
 import base.BaseUITest;
 import org.openqa.selenium.WebElement;
@@ -8,23 +8,24 @@ import pages.ReactPage;
 public class FiltersButtonUITest extends BaseUITest
 {
 
-    public static WebElement minFreq;
-    public static WebElement maxFreq;
-    public static WebElement filterButton;
+    private static WebElement minFreq;
+    private static WebElement maxFreq;
+    private static WebElement filterButton;
 
-    public static WebElement ascendingButton;
-    public static String newMinFreqValue = "20";
-    public static String newMaxFreqValue = "25";
+    private static WebElement ascendingButton;
+    private static String newMinFreqValue = "20";
+    private static String newMaxFreqValue = "25";
 
 
-    public WebElement getFirstFrequencyInTable() {return findByXPath(ReactPage.frequencyFirstRowValueXpath);}
+    public WebElement getFirstFrequencyInTable() {return waitForElementToExist(ReactPage.frequencyFirstRowValueXpath);}
 
     @Test
     public void ValidateFiltersButton()
     {
         minFreq = waitForElementVisibility(ReactPage.frequencyMinInputXpath);
         waitForTextToExistInInputElement(ReactPage.frequencyMinInputXpath);
-        maxFreq = findByXPath(ReactPage.frequencyMaxInputXpath);
+        maxFreq = waitForElementToExist(ReactPage.frequencyMaxInputXpath);
+        waitForTextToExistInInputElement(ReactPage.frequencyMaxInputXpath);
         //assert minFreq.getAttribute("value").equals(getFirstFrequencyInTable().getText());
         clearInputElement(minFreq);
         clearInputElement(maxFreq);
@@ -33,6 +34,7 @@ public class FiltersButtonUITest extends BaseUITest
         filterButton = findByXPath(ReactPage.filterButtonXpath);
         scrollToElement(filterButton);
         filterButton.click();
+        waitForTextToExistInInputElement(getFirstFrequencyInTable().getText());
         assert newMinFreqValue.equals(getFirstFrequencyInTable().getText());
         ascendingButton = findByXPath(ReactPage.frequencyTableFilterAscendingDescendingButton);
         ascendingButton.click();

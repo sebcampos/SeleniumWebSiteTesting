@@ -35,6 +35,7 @@ public class BaseUITest {
 
     private boolean isChrome = false;
     private boolean isEdge = false;
+
     @BeforeMethod
     @Parameters("browser")
     public void setUp(String browser) throws IOException
@@ -76,10 +77,16 @@ public class BaseUITest {
         js = (JavascriptExecutor) driver;
         driver.get(prop.getProperty("websiteUrl"));
         if (isChrome || isEdge) {
-            WebElement advancedButton = findByXPath("//button[@id='details-button']");
-            advancedButton.click();
-            WebElement proceedLink = findByXPath("//a[@id='proceed-link']");
-            proceedLink.click();
+            try
+            {
+                WebElement advancedButton = waitForElementToBeClickable("//button[@id='details-button']");
+                advancedButton.click();
+                WebElement proceedLink = waitForElementToBeClickable("//a[@id='proceed-link']");
+                proceedLink.click();
+            } catch (TimeoutException e)
+            {
+                System.out.println(e.toString());
+            }
         }
     }
 
@@ -118,13 +125,18 @@ public class BaseUITest {
         element.sendKeys(Keys.BACK_SPACE);
     }
 
-    public  void scrollToElement(WebElement element)
+    public void scrollToElement(WebElement element)
     {
         js.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public WebElement waitForElementToBeClickable(String xpath)
+    {
+        return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+    }
     public void navigateToSwaggerApiDocumentationPage()
     {
         driver.get(prop.getProperty("websiteUrl") + "/api/docs");
     }
 }
+

@@ -10,5 +10,10 @@ public class SwaggerUIPage
 
     public static String authorizeButtonXpath = "//button[@class='btn authorize unlocked']";
 
-    public static String tokenInputBoxXpath = "//div[@class='auth-container']//h4//code[contains(text(), 'token')]/../..//input";
+    public static String tokenFormXpath = "//div[@class='auth-container']//h4//code[contains(text(), 'token')]/../../../..";
+    public static String tokenInputBoxXpath = tokenFormXpath+"//input";
+
+    public static String tokenAuthorizeBtnXpath = tokenFormXpath+"//button[@type='submit']";
+
+    public static String closeAuthorizationModalBtnXpath = "//button[contains(@class, 'btn-done') and contains(@class, 'modal-btn')]";
 }
