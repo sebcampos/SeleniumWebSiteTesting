@@ -22,7 +22,7 @@ public class UploadCSVUITest extends BaseUITest
     public void UploadCSVTestCase()
     {
         waitForUploadButton();
-        getUploadButtonInputBox().sendKeys(files[0]);
+        getUploadButtonInputBox().sendKeys(System.getProperty("user.dir")+files[0]);
         assert true;
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+.<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
     <suite name="All Test Suite" thread-count="10" parallel="classes">
         <test verbose="2" name="Chrome">
@@ -27,7 +27,7 @@
             <classes>
                 <class name="APItestcases.GetReportFromApiTest">
                     <methods>
-                        <include name="getReport"/>
+                        <include name="getFullReportInAscendingOrder"/>
                     </methods>
                 </class>
                 <class name="APItestcases.GetReportNamesFromApiTest">
@@ -35,28 +35,35 @@
                         <include name="getReportNamesInAscendingOrder"/>
                     </methods>
                 </class>
+                <class name="APItestcases.InvalidCredentialsTest">
+                    <methods>
+                        <include name="invalidCredentialsGet"/>
+                    </methods>
+                </class>
             </classes>
         </test>
-<!--        <test verbose="2" name="FireFox">-->
-<!--            <parameter name="browser" value="firefox"/>-->
-<!--            <classes>-->
-<!--                <class name="UItestcases.FiltersButtonUITest">-->
-<!--                    <methods>-->
-<!--                        <include name="ValidateFiltersButton"/>-->
-<!--                    </methods>-->
-<!--                </class>-->
-<!--                <class name="UItestcases.SwaggerDocumentationUITest">-->
-<!--                    <methods>-->
-<!--                        <include name="getRequestTest"/>-->
-<!--                    </methods>-->
-<!--                </class>-->
-<!--                <class name="UItestcases.UploadCSVUITest">-->
-<!--                    <methods>-->
-<!--                        <include name="UploadCSVTestCase"/>-->
-<!--                    </methods>-->
-<!--                </class>-->
-<!--            </classes>-->
-<!--        </test>-->
+        <test verbose="2" name="FireFox">
+            <parameter name="browser" value="firefox"/>
+            <classes>
+                <class name="UItestcases.FiltersButtonUITest">
+                    <methods>
+                        <include name="ValidateFiltersButton"/>
+                    </methods>
+                </class>
+                <class name="UItestcases.SwaggerDocumentationUITest">
+                    <methods>
+                        <include name="getRequestWithoutAuthenticationTest"/>
+                        <include name="authenticatedGetRequestTest"/>
+                        <include name="getRequestWithoutAuthenticationTest"/>
+                    </methods>
+                </class>
+                <class name="UItestcases.UploadCSVUITest">
+                    <methods>
+                        <include name="UploadCSVTestCase"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>
         <test verbose="2" name="Edge">
             <parameter name="browser" value="edge"/>
             <classes>
@@ -67,7 +74,9 @@
                 </class>
                 <class name="UItestcases.SwaggerDocumentationUITest">
                     <methods>
-                        <include name="getRequestTest"/>
+                        <include name="getRequestWithoutAuthenticationTest"/>
+                        <include name="authenticatedGetRequestTest"/>
+                        <include name="getRequestWithoutAuthenticationTest"/>
                     </methods>
                 </class>
                 <class name="UItestcases.UploadCSVUITest">

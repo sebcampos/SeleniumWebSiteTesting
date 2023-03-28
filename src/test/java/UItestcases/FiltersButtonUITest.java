@@ -23,7 +23,6 @@ public class FiltersButtonUITest extends BaseUITest
     public void ValidateFiltersButton()
     {
         minFreq = waitForElementVisibility(ReactPage.frequencyMinInputXpath);
-        waitForTextToExistInInputElement(ReactPage.frequencyMinInputXpath);
         maxFreq = waitForElementToExist(ReactPage.frequencyMaxInputXpath);
         waitForTextToExistInInputElement(ReactPage.frequencyMaxInputXpath);
         //assert minFreq.getAttribute("value").equals(getFirstFrequencyInTable().getText());
@@ -34,7 +33,6 @@ public class FiltersButtonUITest extends BaseUITest
         filterButton = findByXPath(ReactPage.filterButtonXpath);
         scrollToElement(filterButton);
         filterButton.click();
-        waitForTextToExistInInputElement(getFirstFrequencyInTable().getText());
         assert newMinFreqValue.equals(getFirstFrequencyInTable().getText());
         ascendingButton = findByXPath(ReactPage.frequencyTableFilterAscendingDescendingButton);
         ascendingButton.click();

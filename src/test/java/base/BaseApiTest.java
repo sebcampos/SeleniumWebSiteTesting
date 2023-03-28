@@ -75,9 +75,29 @@ public class BaseApiTest
                 .build();
         response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        if (response.statusCode() != 200)
+        {
+            System.out.println("d");
+        }
         assert response.statusCode() == 200;
         return response;
     }
+
+
+    public HttpResponse<String> getWithoutToken(String endpoint) throws IOException, InterruptedException
+    {
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(endpoint))
+                .setHeader("Accept", "application/json")
+                .GET()
+                .build();
+        response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        assert response.statusCode() == 403;
+        return response;
+    }
+
 
     public String getReportNamesEndpoint()
     {
@@ -94,9 +114,9 @@ public class BaseApiTest
         return reportsEndpoint;
     }
 
-    public String getReportsEndpoint(String name, String limit, String offset)
+    public String getReportsEndpoint(String name, String limit, String offset, String orderBy, String sort)
     {
-        return reportsEndpoint+"?name="+name+"&limit="+limit+"&offset="+offset;
+        return reportsEndpoint+"?limit="+limit+"&offset="+offset+"&order_by="+orderBy+"&sort="+sort+"&name="+name;
     }
 
 

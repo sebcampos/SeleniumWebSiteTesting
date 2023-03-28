@@ -36,7 +36,7 @@ public class BaseUITest {
     private boolean isChrome = false;
     private boolean isEdge = false;
 
-    @BeforeMethod
+    @BeforeClass
     @Parameters("browser")
     public void setUp(String browser) throws IOException
     {
@@ -52,11 +52,13 @@ public class BaseUITest {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--remote-allow-origins=*");
             WebDriverManager.chromedriver().setup();
+            if (prop.getProperty("headless").equals("true")) {options.addArguments("--headless");}
             isChrome = true;
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             FirefoxOptions options = new FirefoxOptions();
+            if (prop.getProperty("headless").equals("true")) {options.addArguments("--headless");}
             //options.addArguments("--remote-debugging-port");
             options.addArguments("fission.bfcacheInParent=false");
             options.addArguments("fission.webContentIsolationStrategy=0");
@@ -66,6 +68,7 @@ public class BaseUITest {
             driver = new SafariDriver();
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
+            if (prop.getProperty("headless").equals("true")) {options.addArguments("--headless");}
             options.addArguments("--remote-allow-origins=*");
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver(options);
@@ -90,7 +93,7 @@ public class BaseUITest {
         }
     }
 
-    @AfterMethod
+    @AfterClass
     public void tearDown()
     {
         driver.close();
